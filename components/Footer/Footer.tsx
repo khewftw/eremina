@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { MicroTagline } from "@/components/ui/MicroTagline";
+import { Logo } from "@/components/ui/Logo";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealGroup } from "@/components/motion/RevealGroup";
 
@@ -100,9 +102,9 @@ export function Footer() {
       <SectionContainer className="py-20 md:py-28">
         <RevealGroup className="grid grid-cols-1 gap-16 md:grid-cols-[1fr_auto] md:gap-12" y={24}>
           <div>
-            <p className="font-sans text-[34px] font-extrabold uppercase tracking-[-0.02em] text-white md:text-[48px] xl:text-[56px]">
-              Екатерина Еремина
-            </p>
+            <Link href="/" aria-label="На главную">
+              <Logo tone="white" className="h-[40px] w-auto md:h-[52px] xl:h-[60px]" />
+            </Link>
             <MicroTagline
               items={[
                 "Транспорт",
@@ -114,7 +116,15 @@ export function Footer() {
               className="mt-4"
             />
 
-            <ul className="mt-8 flex items-center gap-5">
+            {/* TODO: placeholder contact/legal details — replace with real values */}
+            <div className="mt-6 flex flex-col gap-1.5 text-[14px] text-white/70">
+              <a href="tel:+70000000000" className="transition-colors duration-180 ease-out hover:text-white">
+                +7 (000) 000-00-00
+              </a>
+              <p>г. Москва, ул. Примерная, д. 1</p>
+            </div>
+
+            <ul className="mt-6 flex items-center gap-5">
               {socials.map((social) => (
                 <li key={social.label}>
                   <a
@@ -142,11 +152,14 @@ export function Footer() {
           <p className="text-[12px] text-white/50">
             © {year} Екатерина Еремина. Все права защищены.
           </p>
-          <p className="max-w-[560px] text-[12px] leading-relaxed text-white/50">
-            Персональный информационный ресурс Екатерины Ереминой. Не
-            является официальным сайтом Администрации Президента Российской
-            Федерации или иного государственного органа.
-          </p>
+          <div className="max-w-[560px] text-[12px] leading-relaxed text-white/50">
+            <p>
+              Персональный информационный ресурс Екатерины Ереминой. Не
+              является официальным сайтом Администрации Президента Российской
+              Федерации или иного государственного органа.
+            </p>
+            <p className="mt-2">ИНН 0000000000 · ОГРН 0000000000000</p>
+          </div>
         </Reveal>
       </SectionContainer>
     </footer>

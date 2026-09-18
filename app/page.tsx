@@ -31,7 +31,7 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-dvh flex-col">
-      <Header />
+      <Header overHero />
       <Hero />
       <Directions />
       <Experience />

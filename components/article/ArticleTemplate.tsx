@@ -37,7 +37,7 @@ export function ArticleTemplate({
   const showDates = item.type !== "team";
 
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="flex min-h-dvh flex-col pt-[68px] md:pt-0">
       <Header />
 
       <main className="flex-1">

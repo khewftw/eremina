@@ -20,7 +20,7 @@ export function SplitCta() {
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(7,31,61,0.85)_0%,rgba(7,31,61,0.4)_45%,rgba(7,31,61,0.1)_100%)]"
         />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center md:p-14 xl:p-16">
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center md:p-14 xl:p-16">
           <SectionIntro
             tone="light"
             eyebrow="Команда и проект"
@@ -54,7 +54,7 @@ export function SplitCta() {
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(207,31,41,0.85)_0%,rgba(207,31,41,0.4)_45%,rgba(207,31,41,0.1)_100%)]"
         />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center md:p-14 xl:p-16">
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center md:p-14 xl:p-16">
           <SectionIntro
             tone="light"
             eyebrow="Обратная связь"

@@ -96,6 +96,7 @@ export function Experience() {
                       href={`/experience/${item.anchor}`}
                       label="ПОДРОБНЕЕ"
                       tone="dark"
+                      mobileFullWidth
                       className="mt-5"
                     />
                   </div>
@@ -109,9 +110,9 @@ export function Experience() {
           <OutlineButton
             href="/experience"
             label="ПОДРОБНЕЕ О МОЁМ ОПЫТЕ"
-            tone="dark"
+            tone="navy"
             fullWidth
-            className="max-w-[320px]"
+            className="md:max-w-[320px]"
           />
         </Reveal>
       </SectionContainer>

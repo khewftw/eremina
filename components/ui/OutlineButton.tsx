@@ -3,7 +3,9 @@ import type { AnchorHTMLAttributes } from "react";
 type OutlineButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   label: string;
   fullWidth?: boolean;
-  tone?: "light" | "dark" | "red";
+  /** Full width on mobile only; reverts to the standard fixed desktop width from md: up. */
+  mobileFullWidth?: boolean;
+  tone?: "light" | "dark" | "red" | "navy";
 };
 
 const toneClasses: Record<NonNullable<OutlineButtonProps["tone"]>, string> = {
@@ -11,21 +13,27 @@ const toneClasses: Record<NonNullable<OutlineButtonProps["tone"]>, string> = {
     "border-white/95 text-white hover:border-red hover:bg-red hover:text-white",
   dark: "border-navy-950/80 text-navy-950 hover:border-red hover:bg-red hover:text-white",
   red: "border-red bg-red text-white hover:border-red-dark hover:bg-red-dark",
+  navy: "border-navy-950 bg-navy-950 text-white hover:border-navy-900 hover:bg-navy-900",
 };
+
+function widthClass(fullWidth?: boolean, mobileFullWidth?: boolean) {
+  if (fullWidth) return "w-full";
+  if (mobileFullWidth) return "w-full md:w-[220px]";
+  return "w-[190px] md:w-[220px]";
+}
 
 export function OutlineButton({
   label,
   className,
   fullWidth,
+  mobileFullWidth,
   tone = "light",
   ...props
 }: OutlineButtonProps) {
   return (
     <a
       {...props}
-      className={`group flex h-[56px] items-center justify-between border-2 px-6 text-[15px] font-semibold tracking-[0.015em] transition-[background-color,color,border-color,transform] duration-200 ease-out hover:-translate-y-px md:h-[62px] md:px-7 ${toneClasses[tone]} ${
-        fullWidth ? "w-full" : "w-[190px] md:w-[220px]"
-      } ${className ?? ""}`}
+      className={`group flex h-[56px] items-center justify-between border-2 px-6 text-[15px] font-semibold tracking-[0.015em] transition-[background-color,color,border-color,transform] duration-200 ease-out hover:-translate-y-px md:h-[62px] md:px-7 ${toneClasses[tone]} ${widthClass(fullWidth, mobileFullWidth)} ${className ?? ""}`}
     >
       <span>{label}</span>
       <svg

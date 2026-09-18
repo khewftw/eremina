@@ -1,10 +1,11 @@
 const leftLinks = [
-  { label: "ГЛАВНАЯ", href: "/", active: true },
-  { label: "ПРОГРАММА", href: "/#directions" },
-  { label: "НОВОСТИ", href: "/news" },
+  { label: "НАПРАВЛЕНИЯ", href: "/#directions" },
+  { label: "ОПЫТ", href: "/#experience" },
+  { label: "О ЕКАТЕРИНЕ", href: "/#about" },
 ];
 
 const rightLinks = [
+  { label: "КОМАНДА", href: "/#team" },
   { label: "ПРЕСС-ЦЕНТР", href: "/news" },
   { label: "КОНТАКТЫ", href: "/#footer-contacts" },
 ];
@@ -16,15 +17,9 @@ export function DesktopNavLeft() {
         <li key={link.label}>
           <a
             href={link.href}
-            className="relative block text-[13px] font-semibold leading-none tracking-[0.01em] text-text transition-colors duration-180 ease-out hover:text-red"
+            className="block text-[13px] font-semibold leading-none tracking-[0.01em] text-text transition-colors duration-180 ease-out hover:text-red"
           >
             {link.label}
-            {link.active && (
-              <span
-                className="absolute left-1/2 top-full mt-[9px] h-[2px] w-[44px] -translate-x-1/2 bg-red"
-                aria-hidden="true"
-              />
-            )}
           </a>
         </li>
       ))}

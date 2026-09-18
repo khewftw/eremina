@@ -42,9 +42,9 @@ const socials = [
   },
 ];
 
-export function SocialLinks() {
+export function SocialLinks({ className }: { className?: string }) {
   return (
-    <ul className="hidden items-center gap-[17px] lg:flex">
+    <ul className={className ?? "hidden items-center gap-[17px] lg:flex"}>
       {socials.map((social) => (
         <li key={social.label}>
           <a
