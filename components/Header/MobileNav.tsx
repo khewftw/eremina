@@ -1,0 +1,66 @@
+"use client";
+
+import { useState } from "react";
+
+const links = [
+  { label: "ГЛАВНАЯ", href: "/" },
+  { label: "ПРОГРАММА", href: "/#directions" },
+  { label: "НОВОСТИ", href: "/news" },
+  { label: "ПРЕСС-ЦЕНТР", href: "/news" },
+  { label: "КОНТАКТЫ", href: "/#footer-contacts" },
+];
+
+export function MobileNav() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="md:hidden">
+      <button
+        type="button"
+        aria-label="Меню"
+        aria-expanded={open}
+        aria-controls="mobile-menu"
+        onClick={() => setOpen((v) => !v)}
+        className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] text-text"
+      >
+        <span
+          className={`block h-[2px] w-[22px] bg-current transition-transform duration-200 ${
+            open ? "translate-y-[7px] rotate-45" : ""
+          }`}
+        />
+        <span
+          className={`block h-[2px] w-[22px] bg-current transition-opacity duration-200 ${
+            open ? "opacity-0" : "opacity-100"
+          }`}
+        />
+        <span
+          className={`block h-[2px] w-[22px] bg-current transition-transform duration-200 ${
+            open ? "-translate-y-[7px] -rotate-45" : ""
+          }`}
+        />
+      </button>
+
+      {open && (
+        <nav
+          id="mobile-menu"
+          aria-label="Основная навигация"
+          className="absolute inset-x-0 top-[68px] z-20 border-t border-navy-900/10 bg-surface px-5 py-4"
+        >
+          <ul className="flex flex-col gap-4">
+            {links.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  className="block text-[14px] font-semibold tracking-[0.01em] text-text"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </div>
+  );
+}
