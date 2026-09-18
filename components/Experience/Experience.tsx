@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { OutlineButton } from "@/components/ui/OutlineButton";
-import { ArrowLink } from "@/components/ui/ArrowLink";
+import { Reveal } from "@/components/motion/Reveal";
+import { TimelineLine } from "@/components/motion/TimelineLine";
 
 const milestones = [
   {
@@ -33,30 +33,31 @@ export function Experience() {
   return (
     <section id="experience" aria-labelledby="experience-heading" className="bg-white">
       <SectionContainer className="py-24 md:py-32 xl:py-40">
-        <SectionIntro
-          id="experience-heading"
-          eyebrow="Опыт"
-          heading={["ОТ ОТРАСЛЕВОГО ЗАПРОСА", "К СИСТЕМНОЙ РАБОТЕ"]}
-        >
-          <p>
-            Профессиональный путь Екатерины Ереминой связан с транспортом и
-            логистикой, защитой интересов предпринимателей, международным
-            сотрудничеством и подготовкой кадров для отрасли.
-          </p>
-        </SectionIntro>
+        <Reveal>
+          <SectionIntro
+            id="experience-heading"
+            eyebrow="Опыт"
+            heading={["ОТ ОТРАСЛЕВОГО ЗАПРОСА", "К СИСТЕМНОЙ РАБОТЕ"]}
+          >
+            <p>
+              Профессиональный путь Екатерины Ереминой связан с транспортом и
+              логистикой, защитой интересов предпринимателей, международным
+              сотрудничеством и подготовкой кадров для отрасли.
+            </p>
+          </SectionIntro>
+        </Reveal>
 
         <div className="relative mt-16 md:mt-20">
-          <div
-            aria-hidden="true"
-            className="absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-navy-950/10 md:block"
-          />
+          <TimelineLine className="absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-navy-950/15 md:block" />
 
           {milestones.map((item, i) => {
             const imageLeft = item.imageSide === "left";
 
             return (
-              <div
+              <Reveal
                 key={item.title}
+                x={imageLeft ? -40 : 40}
+                y={0}
                 className={`relative ${i === 0 ? "" : "mt-14 md:mt-0"}`}
               >
                 <div
@@ -91,17 +92,20 @@ export function Experience() {
                     <p className="mt-3 max-w-[480px] text-[15px] leading-relaxed text-muted md:text-[16px]">
                       {item.body}
                     </p>
-                    <Link href={`/experience/${item.anchor}`} className="inline-block">
-                      <ArrowLink label="Подробнее" className="mt-4" />
-                    </Link>
+                    <OutlineButton
+                      href={`/experience/${item.anchor}`}
+                      label="ПОДРОБНЕЕ"
+                      tone="dark"
+                      className="mt-5"
+                    />
                   </div>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>
 
-        <div className="mt-14 flex justify-center md:mt-16">
+        <Reveal className="mt-14 flex justify-center md:mt-16">
           <OutlineButton
             href="/experience"
             label="ПОДРОБНЕЕ О МОЁМ ОПЫТЕ"
@@ -109,7 +113,7 @@ export function Experience() {
             fullWidth
             className="max-w-[320px]"
           />
-        </div>
+        </Reveal>
       </SectionContainer>
     </section>
   );

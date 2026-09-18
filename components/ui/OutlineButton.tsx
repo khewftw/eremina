@@ -3,13 +3,14 @@ import type { AnchorHTMLAttributes } from "react";
 type OutlineButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   label: string;
   fullWidth?: boolean;
-  tone?: "light" | "dark";
+  tone?: "light" | "dark" | "red";
 };
 
 const toneClasses: Record<NonNullable<OutlineButtonProps["tone"]>, string> = {
   light:
     "border-white/95 text-white hover:border-red hover:bg-red hover:text-white",
   dark: "border-navy-950/80 text-navy-950 hover:border-red hover:bg-red hover:text-white",
+  red: "border-red bg-red text-white hover:border-red-dark hover:bg-red-dark",
 };
 
 export function OutlineButton({

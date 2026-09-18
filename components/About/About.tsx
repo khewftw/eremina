@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionIntro } from "@/components/ui/SectionIntro";
+import { Reveal } from "@/components/motion/Reveal";
+import { RevealGroup } from "@/components/motion/RevealGroup";
 
 const inlineLink =
   "font-bold text-white underline decoration-white/30 underline-offset-4 transition-colors duration-180 ease-out hover:text-red hover:decoration-red";
@@ -10,14 +12,16 @@ export function About() {
   return (
     <section id="about" aria-labelledby="about-heading" className="bg-navy-950">
       <SectionContainer className="py-24 md:py-32 xl:py-40">
-        <SectionIntro
-          id="about-heading"
-          eyebrow="О Екатерине"
-          heading={["ПРОФЕССИОНАЛЬНАЯ ПОВЕСТКА", "НА СТЫКЕ НЕСКОЛЬКИХ СФЕР"]}
-          tone="dark"
-        />
+        <Reveal>
+          <SectionIntro
+            id="about-heading"
+            eyebrow="О Екатерине"
+            heading={["ПРОФЕССИОНАЛЬНАЯ ПОВЕСТКА", "НА СТЫКЕ НЕСКОЛЬКИХ СФЕР"]}
+            tone="dark"
+          />
+        </Reveal>
 
-        <div className="mx-auto mt-10 flex max-w-[1040px] flex-col gap-6 text-left text-[15px] leading-relaxed text-white/75 md:mt-12">
+        <RevealGroup className="mx-auto mt-10 flex max-w-[1040px] flex-col gap-6 text-left text-[15px] leading-relaxed text-white/75 md:mt-12">
           <p>
             Екатерина Еремина работает на стыке трёх сфер: транспортной
             отрасли, международного профессионального сообщества и системы
@@ -70,9 +74,9 @@ export function About() {
             работает на их стыке, приходится говорить сразу на языке
             отрасли, языке экспертного сообщества и языке университета.
           </p>
-        </div>
+        </RevealGroup>
 
-        <div className="mt-14 flex flex-col items-center md:mt-16">
+        <Reveal scale={0.85} y={0} className="mt-14 flex flex-col items-center md:mt-16">
           <a
             href="#"
             className="group relative h-[320px] w-[320px] overflow-hidden rounded-full transition-transform duration-300 ease-out hover:scale-105 sm:h-[380px] sm:w-[380px] md:h-[460px] md:w-[460px] xl:h-[500px] xl:w-[500px]"
@@ -117,7 +121,7 @@ export function About() {
               />
             </svg>
           </div>
-        </div>
+        </Reveal>
       </SectionContainer>
     </section>
   );

@@ -4,6 +4,8 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { OutlineButton } from "@/components/ui/OutlineButton";
+import { Reveal } from "@/components/motion/Reveal";
+import { RevealGroup } from "@/components/motion/RevealGroup";
 
 export type NewsCardItem = {
   href: string;
@@ -22,43 +24,47 @@ export function News({ newsItems }: { newsItems: NewsCardItem[] }) {
   return (
     <section id="news" aria-labelledby="news-heading" className="bg-white">
       <SectionContainer className="py-24 md:py-32 xl:py-40">
-        <SectionIntro
-          id="news-heading"
-          eyebrow="Пресс-центр"
-          heading={["СОБЫТИЯ, ВСТРЕЧИ,", "ПРОФЕССИОНАЛЬНАЯ ПОВЕСТКА"]}
-        />
+        <Reveal>
+          <SectionIntro
+            id="news-heading"
+            eyebrow="Пресс-центр"
+            heading={["СОБЫТИЯ, ВСТРЕЧИ,", "ПРОФЕССИОНАЛЬНАЯ ПОВЕСТКА"]}
+          />
+        </Reveal>
 
-        <article className="mt-16 md:mt-20">
-          <Link
-            href={featured.href}
-            className="group grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center md:gap-12"
-          >
-            <div className="relative aspect-[16/11] w-full overflow-hidden">
-              <Image
-                src={featured.image}
-                alt={featured.title}
-                fill
-                quality={90}
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div>
-              <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-red">
-                Главная тема · {featured.date}
-              </p>
-              <h3 className="mt-4 font-sans text-[30px] font-extrabold uppercase leading-[1.05] text-navy-950 transition-colors duration-180 ease-out group-hover:text-red md:text-[40px]">
-                {featured.title}
-              </h3>
-              <p className="mt-4 max-w-[440px] text-[15px] leading-relaxed text-muted md:text-[16px]">
-                {featured.excerpt}
-              </p>
-              <ArrowLink label="Читать материал" className="mt-6" />
-            </div>
-          </Link>
-        </article>
+        <Reveal x={-40} y={0} className="mt-16 md:mt-20">
+          <article>
+            <Link
+              href={featured.href}
+              className="group grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center md:gap-12"
+            >
+              <div className="relative aspect-[16/11] w-full overflow-hidden">
+                <Image
+                  src={featured.image}
+                  alt={featured.title}
+                  fill
+                  quality={90}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+              </div>
+              <div>
+                <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-red">
+                  Главная тема · {featured.date}
+                </p>
+                <h3 className="mt-4 font-sans text-[30px] font-extrabold uppercase leading-[1.05] text-navy-950 transition-colors duration-180 ease-out group-hover:text-red md:text-[40px]">
+                  {featured.title}
+                </h3>
+                <p className="mt-4 max-w-[440px] text-[15px] leading-relaxed text-muted md:text-[16px]">
+                  {featured.excerpt}
+                </p>
+                <ArrowLink label="Читать материал" className="mt-6" />
+              </div>
+            </Link>
+          </article>
+        </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 md:mt-14">
+        <RevealGroup className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 md:mt-14">
           {secondary.map((story) => (
             <article key={story.title} className="flex h-full flex-col">
               <Link href={story.href} className="group flex h-full flex-col">
@@ -69,7 +75,7 @@ export function News({ newsItems }: { newsItems: NewsCardItem[] }) {
                     fill
                     quality={90}
                     sizes="(min-width: 640px) 33vw, 100vw"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   />
                 </div>
                 <p className="mt-4 font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-red">
@@ -85,11 +91,11 @@ export function News({ newsItems }: { newsItems: NewsCardItem[] }) {
               </Link>
             </article>
           ))}
-        </div>
+        </RevealGroup>
 
-        <div className="mt-12 flex justify-center md:mt-14">
+        <Reveal className="mt-12 flex justify-center md:mt-14">
           <OutlineButton href="/news" label="ВСЕ НОВОСТИ" tone="dark" />
-        </div>
+        </Reveal>
       </SectionContainer>
     </section>
   );

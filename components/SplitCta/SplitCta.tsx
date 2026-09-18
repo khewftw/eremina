@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { OutlineButton } from "@/components/ui/OutlineButton";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function SplitCta() {
   return (
     <section aria-label="Материалы и обратная связь" className="relative flex w-full flex-col md:flex-row">
-      <div className="relative h-[420px] w-full overflow-hidden md:h-[560px] md:w-1/2 xl:h-[700px]">
+      <Reveal x={-60} y={0} className="relative h-[420px] w-full overflow-hidden md:h-[560px] md:w-1/2 xl:h-[700px]">
         <Image
           src="/cta/1.png"
           alt=""
@@ -32,14 +33,14 @@ export function SplitCta() {
             <OutlineButton href="#" label="ПЕРЕЙТИ К МАТЕРИАЛАМ" />
           </div>
         </div>
-      </div>
+      </Reveal>
 
       <div
         aria-hidden="true"
         className="hidden w-px bg-white/15 md:block"
       />
 
-      <div className="relative h-[420px] w-full overflow-hidden md:h-[560px] md:w-1/2 xl:h-[700px]">
+      <Reveal x={60} y={0} className="relative h-[420px] w-full overflow-hidden md:h-[560px] md:w-1/2 xl:h-[700px]">
         <Image
           src="/cta/2.png"
           alt=""
@@ -70,7 +71,7 @@ export function SplitCta() {
             <OutlineButton href="#" label="НАПРАВИТЬ ПРЕДЛОЖЕНИЕ" />
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

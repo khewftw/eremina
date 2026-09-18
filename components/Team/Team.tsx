@@ -1,10 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { OutlineButton } from "@/components/ui/OutlineButton";
+import { Reveal } from "@/components/motion/Reveal";
+import { gsap } from "@/components/motion/gsap-config";
 
 export type TeamCardMember = {
   slug: string;
@@ -46,20 +48,47 @@ export function Team({ teamMembers }: { teamMembers: TeamCardMember[] }) {
     setIndex(closest);
   };
 
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        track.children,
+        { autoAlpha: 0, y: 40 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.1,
+          scrollTrigger: { trigger: track, start: "top 85%", toggleActions: "play none none reverse" },
+        },
+      );
+    }, trackRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section id="team" aria-labelledby="team-heading" className="bg-white">
       <SectionContainer className="py-24 md:py-32 xl:py-40">
-        <SectionIntro
-          id="team-heading"
-          eyebrow="Команда"
-          heading={["ЛЮДИ, КОТОРЫЕ РАБОТАЮТ", "С ПРОФЕССИОНАЛЬНОЙ ПОВЕСТКОЙ"]}
-        >
-          <p>
-            Экспертная работа строится вокруг специалистов из разных сфер —
-            транспорта и логистики, права, образования, международного
-            сотрудничества и коммуникаций.
-          </p>
-        </SectionIntro>
+        <Reveal>
+          <SectionIntro
+            id="team-heading"
+            eyebrow="Команда"
+            heading={["ЛЮДИ, КОТОРЫЕ РАБОТАЮТ", "С ПРОФЕССИОНАЛЬНОЙ ПОВЕСТКОЙ"]}
+          >
+            <p>
+              Экспертная работа строится вокруг специалистов из разных сфер —
+              транспорта и логистики, права, образования, международного
+              сотрудничества и коммуникаций.
+            </p>
+          </SectionIntro>
+        </Reveal>
 
         <div className="mt-16 md:mt-20" aria-roledescription="carousel">
           <div

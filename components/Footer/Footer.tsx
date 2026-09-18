@@ -1,5 +1,7 @@
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { MicroTagline } from "@/components/ui/MicroTagline";
+import { Reveal } from "@/components/motion/Reveal";
+import { RevealGroup } from "@/components/motion/RevealGroup";
 
 const navLinks = [
   { label: "Направления", href: "/#directions" },
@@ -96,7 +98,7 @@ export function Footer() {
       <div aria-hidden="true" className="h-1 w-full bg-red" />
 
       <SectionContainer className="py-20 md:py-28">
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-[1fr_auto] md:gap-12">
+        <RevealGroup className="grid grid-cols-1 gap-16 md:grid-cols-[1fr_auto] md:gap-12" y={24}>
           <div>
             <p className="font-sans text-[34px] font-extrabold uppercase tracking-[-0.02em] text-white md:text-[48px] xl:text-[56px]">
               Екатерина Еремина
@@ -134,9 +136,9 @@ export function Footer() {
             <FooterColumn title="Материалы" links={materialLinks} />
             <FooterColumn title="Контакты" links={contactLinks} />
           </div>
-        </div>
+        </RevealGroup>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 md:mt-20 md:flex-row md:items-start md:justify-between md:gap-10">
+        <Reveal y={16} className="mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 md:mt-20 md:flex-row md:items-start md:justify-between md:gap-10">
           <p className="text-[12px] text-white/50">
             © {year} Екатерина Еремина. Все права защищены.
           </p>
@@ -145,7 +147,7 @@ export function Footer() {
             является официальным сайтом Администрации Президента Российской
             Федерации или иного государственного органа.
           </p>
-        </div>
+        </Reveal>
       </SectionContainer>
     </footer>
   );
